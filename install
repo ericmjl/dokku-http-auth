@@ -2,5 +2,5 @@
 set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
 
 if [[ -z $(which mkpasswd) ]]; then
-  apt-get update && apt-get install -y whois
+  python -m platform | grep -qi Ubuntu && (apt-get update && apt-get install -y whois) || (yum update && yum install -y whois)
 fi
